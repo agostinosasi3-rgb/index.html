@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St.Joseph Sasi Secondary School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2a5298;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #1e3c72;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 0.5rem;
+        }
+
+        .programmes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .programme-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .programme-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .programme-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .programme-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .programme-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .programme-card li:last-child {
+            border-bottom: none;
+        }
+
+        .results-section {
+            background: #f8f9fa;
+        }
+
+        .year-selector {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .year-btn {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .year-btn:hover {
+            background: #1e3c72;
+            transform: scale(1.05);
+        }
+
+        .year-btn.active {
+            background: #1e3c72;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .results-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .results-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .results-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .results-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .results-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-card h4 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .programmes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>St.Joseph Sasi Secondary School</h1>
+            <p>"Education for better future muraa!"</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#Combination">Combinations</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#environment">Environment</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="home">
+            <h2>Welcome to St.Joseph Sasi Secondary School</h2>
+            <p>We are committed to providing quality education and nurturing future leaders. Our school offers diverse programme combinations for Form Six students, ensuring every student finds their path to success.</p>
+        </section>
+
+        <section id="combination">
+            <h2>Form Six Programme Combinations</h2>
+            <div class="programmes-grid">
+                <div class="programme-card">
+                    <h3>PCM</h3>
+                    <p><strong>Physics, Chemistry, Mathematics</strong></p>
+                    <ul>
+                        <li>Physics</li>
+                        <li>Chemistry</li>
+                        <li>Mathematics</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Ideal for students pursuing engineering and pure sciences.</p>
+                </div>
+
+                <div class="programme-card">
+                    <h3>EGM</h3>
+                    <p><strong>Economics, Geography, Mathematics</strong></p>
+                    <ul>
+                        <li>Economics</li>
+                        <li>Geography</li>
+                        <li>Mathematics</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Perfect for business, economics, and social sciences careers.</p>
+                </div>
+
+                <div class="programme-card">
+                    <h3>HGE</h3>
+                    <p><strong>History, Geography, Economics</strong></p>
+                    <ul>
+                        <li>History</li>
+                        <li>Geography</li>
+                        <li>Economics</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Excellent foundation for law, education, and public administration.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="results-section">
+            <h2>Form Six Results</h2>
+            <p>Access our annual Advanced Certificate of Secondary Education Examination (ACSEE) results:</p>
+            
+            <div class="year-selector">
+                <button class="year-btn active" onclick="showResults(2025)">2025</button>
+                <button class="year-btn" onclick="showResults(2024)">2024</button>
+                <button class="year-btn" onclick="showResults(2023)">2023</button>
+                <button class="year-btn" onclick="showResults(2022)">2022</button>
+            </div>
+
+            <div id="results-2025" class="results-content active">
+                <h3>2025 ACSEE Results</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Statistics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Students</td>
+                            <td>156</td>
+                        </tr>
+                        <tr>
+                            <td>Division I & II</td>
+                            <td>98 (62.8%)</td>
+                        </tr>
+                        <tr>
+                            <td>Division III & IV</td>
+                            <td>52 (33.3%)</td>
+                        </tr>
+                        <tr>
+                            <td>Pass Rate</td>
+                            <td>96.1%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="results-2024" class="results-content">
+                <h3>2024 ACSEE Results</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Statistics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Students</td>
+                            <td>142</td>
+                        </tr>
+                        <tr>
+                            <td>Division I & II</td>
+                            <td>85 (59.9%)</td>
+                        </tr>
+                        <tr>
+                            <td>Division III & IV</td>
+                            <td>51 (35.9%)</td>
+                        </tr>
+                        <tr>
+                            <td>Pass Rate</td>
+                            <td>95.8%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="results-2023" class="results-content">
+                <h3>2023 ACSEE Results</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Statistics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Students</td>
+                            <td>138</td>
+                        </tr>
+                        <tr>
+                            <td>Division I & II</td>
+                            <td>79 (57.2%)</td>
+                        </tr>
+                        <tr>
+                            <td>Division III & IV</td>
+                            <td>54 (39.1%)</td>
+                        </tr>
+                        <tr>
+                            <td>Pass Rate</td>
+                            <td>96.4%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="results-2022" class="results-content">
+                <h3>2022 ACSEE Results</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Statistics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Students</td>
+                            <td>128</td>
+                        </tr>
+                        <tr>
+                            <td>Division I & II</td>
+                            <td>68 (53.1%)</td>
+                        </tr>
+                        <tr>
+                            <td>Division III & IV</td>
+                            <td>55 (43.0%)</td>
+                        </tr>
+                        <tr>
+                            <td>Pass Rate</td>
+                            <td>96.1%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="environment">
+            <h2>Our School Environment</h2>
+            <p>Explore our modern facilities and conducive learning environment for learning:</p>
+            <div class="gallery">
+                <div class="gallery-item">Science Laboratory</div>
+                <div class="gallery-item">Library & Resource Center</div>
+                <div class="gallery-item">Computer Lab</div>
+                <div class="gallery-item">Sports Facilities</div>
+                <div class="gallery-item">Classrooms</div>
+                <div class="gallery-item">School Hall</div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h4>Address</h4>
+                    <p>P.O. Box 114<br>Tarime, Tanzania</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Phone</h4>
+                    <p>+255 758118643</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Email</h4>
+                    <p>info@St.Josephschool.ac.tz</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Office Hours</h4>
+                    <p>Monday - Friday<br>8:00 AM - 4:00 PM</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 St.Joseph Sasi Secondary School. All rights reserved.</p>
+        <p>Building Tomorrow's Leaders Today</p>
+    </footer>
+
+    <script>
+        function showResults(year) {
+            const buttons = document.querySelectorAll('.year-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            
+            const contents = document.querySelectorAll('.results-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            document.getElementById('results-' + year).classList.add('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St.Joseph Sasi Secondary School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        nav {
+            background: #2a5298;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #1e3c72;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 0.5rem;
+        }
+
+        .programmes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .programme-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .programme-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .programme-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .programme-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .programme-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .programme-card li:last-child {
+            border-bottom: none;
+        }
+
+        .results-section {
+            background: #f8f9fa;
+        }
+
+        .year-selector {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .year-btn {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .year-btn:hover {
+            background: #1e3c72;
+            transform: scale(1.05);
+        }
+
+        .year-btn.active {
+            background: #1e3c72;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .results-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .results-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .results-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .results-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .results-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .school-building {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background-image: url('https://i.imgur.com/placeholder.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .school-building.has-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .upload-section {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .upload-btn {
+            background: #2a5298;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .upload-btn:hover {
+            background: #1e3c72;
+        }
+
+        .image-preview {
+            display: inline-block;
+            margin: 0.5rem;
+            position: relative;
+        }
+
+        .image-preview img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .school-name-overlay {
+            position: relative;
+            z-index: 1;
+            background: rgba(255,255,255,0.95);
+            padding: 2rem 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .school-name-overlay h3 {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .school-name-overlay p {
+            color: #2a5298;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            height: 250px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-card h4 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding-top: 0;
+            }
+
+            nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .container {
+                margin-left: 20px;
+            }
+
+            body {
+                padding-top: 0;
+            }
+
+            header {
+                position: relative;
+            }
+
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .programmes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#programmes">Programmes</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#environment">Environment</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h1>St. Joseph Sasi Secondary School</h1>
+            <p>Empowering Tomorrow's Leaders Through Quality Education</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="home">
+            <h2>Welcome to St. Joseph Sasi Secondary School</h2>
+            
+            <div class="upload-section">
+                <h3 style="color: #1e3c72; margin-bottom: 1rem;">Upload School Building Photo</h3>
+                <input type="file" id="buildingUpload" accept="image/*" style="display: none;">
+                <button class="upload-btn" onclick="document.getElementById('buildingUpload').click()">Choose Building Photo</button>
+                <div id="buildingPreview"></div>
+            </div>
+            
+            <div class="school-building" id="schoolBuilding">
+            </div>
+            
+            <p>We are committed to providing quality education and nurturing future leaders. Our school offers diverse programme combinations for Form Six students, ensuring every student finds their path to success.</p>
+        </section>
+
+        <section id="programmes">
+            <h2>Form Six Programme Combinations</h2>
+            <div class="programmes-grid">
+                <div class="programme-card">
+                    <h3>PCM</h3>
+                    <p><strong>Physics, Chemistry, Mathematics</strong></p>
+                    <ul>
+                        <li>Physics</li>
+                        <li>Chemistry</li>
+                        <li>Mathematics</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Ideal for students pursuing engineering, medicine, and pure sciences.</p>
+                </div>
+
+                <div class="programme-card">
+                    <h3>EGM</h3>
+                    <p><strong>Economics, Geography, Mathematics</strong></p>
+                    <ul>
+                        <li>Economics</li>
+                        <li>Geography</li>
+                        <li>Mathematics</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Perfect for business, economics, and social sciences careers.</p>
+                </div>
+
+                <div class="programme-card">
+                    <h3>HGE</h3>
+                    <p><strong>History, Geography, Economics</strong></p>
+                    <ul>
+                        <li>History</li>
+                        <li>Geography</li>
+                        <li>Economics</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Excellent foundation for law, education, and public administration.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="results-section">
+            <h2>Form Six Results</h2>
+            <p>Access our annual Advanced Certificate of Secondary Education Examination (ACSEE) results:</p>
+            
+            <div class="year-selector">
+                <button class="year-btn active" onclick="showResults(2024)">2024</button>
+                <button class="year-btn" onclick="showResults(2023)">2023</button>
+                <button class="year-btn" onclick="showResults(2022)">2022</button>
+                <button class="year-btn" onclick="showResults(2021)">2021</button>
+            </div>
+
+            <div id="results-2024" class="results-content active">
+                <h3>2024 ACSEE Results</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Statistics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Students</td>
+                            <td>156</td>
+                        </tr>
+                        <tr>
+                            <td>Division I & II</td>
+                            <td>98 (62.8%)</td>
+                        </tr>
+                        <tr>
+                            <td>Division III & IV</td>
+                            <td>52 (33.3%)</td>
+                        </tr>
+                        <tr>
+                            <td>Pass Rate</td>
+                            <td>96.1%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="results-2023" class="results-content">
+                <h3>2023 ACSEE Results</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Statistics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Students</td>
+                            <td>142</td>
+                        </tr>
+                        <tr>
+                            <td>Division I & II</td>
+                            <td>85 (59.9%)</td>
+                        </tr>
+                        <tr>
+                            <td>Division III & IV</td>
+                            <td>51 (35.9%)</td>
+                        </tr>
+                        <tr>
+                            <td>Pass Rate</td>
+                            <td>95.8%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="results-2022" class="results-content">
+                <h3>2022 ACSEE Results</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Statistics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Students</td>
+                            <td>138</td>
+                        </tr>
+                        <tr>
+                            <td>Division I & II</td>
+                            <td>79 (57.2%)</td>
+                        </tr>
+                        <tr>
+                            <td>Division III & IV</td>
+                            <td>54 (39.1%)</td>
+                        </tr>
+                        <tr>
+                            <td>Pass Rate</td>
+                            <td>96.4%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="results-2021" class="results-content">
+                <h3>2021 ACSEE Results</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Statistics</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Total Students</td>
+                            <td>128</td>
+                        </tr>
+                        <tr>
+                            <td>Division I & II</td>
+                            <td>68 (53.1%)</td>
+                        </tr>
+                        <tr>
+                            <td>Division III & IV</td>
+                            <td>55 (43.0%)</td>
+                        </tr>
+                        <tr>
+                            <td>Pass Rate</td>
+                            <td>96.1%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="environment">
+            <h2>Our School Environment</h2>
+            <p>Explore our modern facilities and conducive learning environment:</p>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <svg width="100%" height="100%" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Science Lab Background -->
+                        <rect fill="#e8f4f8" width="300" height="250"/>
+                        <!-- Lab Table -->
+                        <rect fill="#8B4513" x="50" y="150" width="200" height="15"/>
+                        <rect fill="#A0522D" x="55" y="165" width="8" height="60"/>
+                        <rect fill="#A0522D" x="237" y="165" width="8" height="60"/>
+                        <!-- Student 1 -->
+                        <circle fill="#D2691E" cx="100" cy="120" r="15"/>
+                        <rect fill="#4169E1" x="90" y="135" width="20" height="30" rx="3"/>
+                        <!-- Student 2 -->
+                        <circle fill="#8B4513" cx="200" cy="120" r="15"/>
+                        <rect fill="#32CD32" x="190" y="135" width="20" height="30" rx="3"/>
+                        <!-- Burette -->
+                        <rect fill="#B0E0E6" x="95" y="80" width="8" height="50" rx="2"/>
+                        <rect fill="#4682B4" x="93" y="75" width="12" height="8"/>
+                        <!-- Flask -->
+                        <ellipse fill="#E0F7FA" cx="200" cy="145" rx="15" ry="10"/>
+                        <path fill="#B0E0E6" d="M 192 145 L 192 155 Q 200 160 208 155 L 208 145 Z"/>
+                        <!-- Liquid drops -->
+                        <circle fill="#FF6B6B" cx="99" cy="130" r="2"/>
+                        <circle fill="#FF6B6B" cx="99" cy="138" r="2"/>
+                        <text x="150" y="30" font-size="14" font-weight="bold" fill="#1e3c72" text-anchor="middle">Science Lab - Titration Practical</text>
+                        <text x="150" y="240" font-size="12" fill="#2a5298" text-anchor="middle">Students Conducting Experiments</text>
+                    </svg>
+                </div>
+                <div class="gallery-item">
+                    <svg width="100%" height="100%" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Library Background -->
+                        <rect fill="#FFF8DC" width="300" height="250"/>
+                        <!-- Bookshelves -->
+                        <rect fill="#8B4513" x="20" y="60" width="80" height="120"/>
+                        <line x1="20" y1="90" x2="100" y2="90" stroke="#A0522D" stroke-width="2"/>
+                        <line x1="20" y1="120" x2="100" y2="120" stroke="#A0522D" stroke-width="2"/>
+                        <line x1="20" y1="150" x2="100" y2="150" stroke="#A0522D" stroke-width="2"/>
+                        <!-- Books on shelf -->
+                        <rect fill="#FF6347" x="25" y="65" width="12" height="20"/>
+                        <rect fill="#4169E1" x="40" y="65" width="12" height="20"/>
+                        <rect fill="#32CD32" x="55" y="65" width="12" height="20"/>
+                        <!-- Student reading -->
+                        <circle fill="#D2691E" cx="180" cy="120" r="18"/>
+                        <rect fill="#FF69B4" x="167" y="138" width="26" height="35" rx="3"/>
+                        <!-- Book in hands -->
+                        <rect fill="#4169E1" x="170" y="150" width="20" height="15" rx="2"/>
+                        <line x1="180" y1="150" x2="180" y2="165" stroke="#000" stroke-width="1"/>
+                        <!-- Table -->
+                        <rect fill="#DEB887" x="140" y="170" width="80" height="10"/>
+                        <text x="150" y="30" font-size="14" font-weight="bold" fill="#1e3c72" text-anchor="middle">Library & Resource Center</text>
+                        <text x="150" y="240" font-size="12" fill="#2a5298" text-anchor="middle">Students Reading & Researching</text>
+                    </svg>
+                </div>
+                <div class="gallery-item">
+                    <svg width="100%" height="100%" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Computer Lab Background -->
+                        <rect fill="#F0F8FF" width="300" height="250"/>
+                        <!-- Desk -->
+                        <rect fill="#696969" x="80" y="140" width="140" height="60"/>
+                        <!-- Computers -->
+                        <rect fill="#2F4F4F" x="90" y="110" width="50" height="35" rx="2"/>
+                        <rect fill="#87CEEB" x="93" y="113" width="44" height="26"/>
+                        <rect fill="#2F4F4F" x="160" y="110" width="50" height="35" rx="2"/>
+                        <rect fill="#87CEEB" x="163" y="113" width="44" height="26"/>
+                        <!-- Students -->
+                        <circle fill="#8B4513" cx="115" cy="90" r="12"/>
+                        <rect fill="#FF6347" x="106" y="102" width="18" height="25" rx="2"/>
+                        <circle fill="#D2691E" cx="185" cy="90" r="12"/>
+                        <rect fill="#32CD32" x="176" y="102" width="18" height="25" rx="2"/>
+                        <!-- Keyboards -->
+                        <rect fill="#C0C0C0" x="95" y="145" width="40" height="8" rx="1"/>
+                        <rect fill="#C0C0C0" x="165" y="145" width="40" height="8" rx="1"/>
+                        <text x="150" y="30" font-size="14" font-weight="bold" fill="#1e3c72" text-anchor="middle">Computer Lab</text>
+                        <text x="150" y="240" font-size="12" fill="#2a5298" text-anchor="middle">Students Learning ICT Skills</text>
+                    </svg>
+                </div>
+                <div class="gallery-item">
+                    <svg width="100%" height="100%" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sports Field Background -->
+                        <rect fill="#90EE90" width="300" height="250"/>
+                        <!-- Football goal -->
+                        <rect fill="none" stroke="#FFFFFF" stroke-width="3" x="40" y="120" width="60" height="40"/>
+                        <line x1="40" y1="120" x2="100" y2="160" stroke="#FFFFFF" stroke-width="1.5"/>
+                        <line x1="100" y1="120" x2="40" y2="160" stroke="#FFFFFF" stroke-width="1.5"/>
+                        <!-- Students playing football -->
+                        <circle fill="#FF6347" cx="150" cy="140" r="15"/>
+                        <rect fill="#4169E1" x="140" y="155" width="20" height="25" rx="3"/>
+                        <line x1="142" y1="180" x2="135" y2="200" stroke="#4169E1" stroke-width="4"/>
+                        <line x1="158" y1="180" x2="165" y2="200" stroke="#4169E1" stroke-width="4"/>
+                        <!-- Football -->
+                        <circle fill="#FFFFFF" cx="150" cy="180" r="8"/>
+                        <path fill="none" stroke="#000000" stroke-width="1" d="M 150 172 Q 154 176 150 180"/>
+                        <!-- Another student -->
+                        <circle fill="#8B4513" cx="200" cy="130" r="13"/>
+                        <rect fill="#32CD32" x="191" y="143" width="18" height="23" rx="3"/>
+                        <text x="150" y="30" font-size="14" font-weight="bold" fill="#1e3c72" text-anchor="middle">Sports Facilities</text>
+                        <text x="150" y="240" font-size="12" fill="#2a5298" text-anchor="middle">Students Playing Football</text>
+                    </svg>
+                </div>
+                <div class="gallery-item">
+                    <svg width="100%" height="100%" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Classroom Background -->
+                        <rect fill="#FFFACD" width="300" height="250"/>
+                        <!-- Blackboard -->
+                        <rect fill="#2F4F4F" x="30" y="40" width="120" height="80" rx="3"/>
+                        <text x="90" y="70" font-size="12" fill="#FFFFFF" text-anchor="middle">PCM = Physics</text>
+                        <text x="90" y="88" font-size="12" fill="#FFFFFF" text-anchor="middle">Chemistry</text>
+                        <text x="90" y="106" font-size="12" fill="#FFFFFF" text-anchor="middle">Mathematics</text>
+                        <!-- Teacher -->
+                        <circle fill="#D2691E" cx="90" cy="140" r="15"/>
+                        <rect fill="#8B4513" x="80" y="155" width="20" height="30" rx="3"/>
+                        <!-- Desks and students -->
+                        <rect fill="#DEB887" x="180" y="100" width="40" height="30"/>
+                        <circle fill="#8B4513" cx="200" cy="85" r="12"/>
+                        <rect fill="#4169E1" x="191" y="97" width="18" height="20" rx="2"/>
+                        <rect fill="#DEB887" x="180" y="160" width="40" height="30"/>
+                        <circle fill="#D2691E" cx="200" cy="145" r="12"/>
+                        <rect fill="#FF69B4" x="191" y="157" width="18" height="20" rx="2"/>
+                        <text x="150" y="30" font-size="14" font-weight="bold" fill="#1e3c72" text-anchor="middle">Classrooms</text>
+                        <text x="150" y="240" font-size="12" fill="#2a5298" text-anchor="middle">Students in Class Learning</text>
+                    </svg>
+                </div>
+                <div class="gallery-item">
+                    <svg width="100%" height="100%" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg">
+                        <!-- School Hall Background -->
+                        <rect fill="#FFE4E1" width="300" height="250"/>
+                        <!-- Stage -->
+                        <rect fill="#8B4513" x="50" y="140" width="200" height="60"/>
+                        <rect fill="#A0522D" x="50" y="135" width="200" height="8"/>
+                        <!-- Curtains -->
+                        <rect fill="#DC143C" x="40" y="50" width="15" height="90"/>
+                        <rect fill="#DC143C" x="245" y="50" width="15" height="90"/>
+                        <!-- Student performing -->
+                        <circle fill="#D2691E" cx="150" cy="120" r="15"/>
+                        <rect fill="#FFD700" x="140" y="135" width="20" height="30" rx="3"/>
+                        <line x1="135" y1="145" x2="125" y2="155" stroke="#FFD700" stroke-width="3"/>
+                        <line x1="165" y1="145" x2="175" y2="155" stroke="#FFD700" stroke-width="3"/>
+                        <!-- Microphone -->
+                        <line x1="150" y1="165" x2="150" y2="180" stroke="#708090" stroke-width="2"/>
+                        <circle fill="#708090" cx="150" cy="165" r="4"/>
+                        <!-- Audience -->
+                        <circle fill="#8B4513" cx="80" cy="190" r="8"/>
+                        <circle fill="#D2691E" cx="110" cy="190" r="8"/>
+                        <circle fill="#8B4513" cx="190" cy="190" r="8"/>
+                        <circle fill="#D2691E" cx="220" cy="190" r="8"/>
+                        <text x="150" y="30" font-size="14" font-weight="bold" fill="#1e3c72" text-anchor="middle">School Hall</text>
+                        <text x="150" y="240" font-size="12" fill="#2a5298" text-anchor="middle">Students in Assembly & Events</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h4>Address</h4>
+                    <p>P.O. Box 12345<br>Morogoro, Tanzania</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Phone</h4>
+                    <p>+255 758 118 643</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Email</h4>
+                    <p>agostinosasi@gmail.com</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Headmaster</h4>
+                    <p>Amos Castori Mgore</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Office Hours</h4>
+                    <p>Monday - Friday<br>8:00 AM - 4:00 PM</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 St. Joseph Sasi Secondary School. All rights reserved.</p>
+        <p>Building Tomorrow's Leaders Today</p>
+    </footer>
+
+    <script>
+        // Building photo upload
+        document.getElementById('buildingUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const schoolBuilding = document.getElementById('schoolBuilding');
+                    schoolBuilding.style.backgroundImage = `url(${event.target.result})`;
+                    schoolBuilding.classList.add('has-image');
+                    schoolBuilding.style.backgroundSize = 'cover';
+                    schoolBuilding.style.backgroundPosition = 'center';
+                    
+                    const preview = document.getElementById('buildingPreview');
+                    preview.innerHTML = `
+                        <div class="image-preview">
+                            <img src="${event.target.result}" alt="Building preview">
+                            <button class="remove-btn" onclick="removeBuildingPhoto()">×</button>
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function removeBuildingPhoto() {
+            const schoolBuilding = document.getElementById('schoolBuilding');
+            schoolBuilding.style.backgroundImage = '';
+            schoolBuilding.classList.remove('has-image');
+            document.getElementById('buildingPreview').innerHTML = '';
+            document.getElementById('buildingUpload').value = '';
+        }
+
+        // Environment photos upload - individual uploads
+        for (let i = 0; i < 6; i++) {
+            document.getElementById('upload' + i).addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        document.getElementById('img' + i).src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function showResults(year) {
+            const buttons = document.querySelectorAll('.year-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            
+            const contents = document.querySelectorAll('.results-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            document.getElementById('results-' + year).classList.add('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    </script>
+</body>
+</html>
